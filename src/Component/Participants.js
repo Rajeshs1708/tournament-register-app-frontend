@@ -14,7 +14,7 @@ function Participants () {
   const showTournament = async () => {
     try {
       const { data } = await axios.get(
-        'http://localhost:8080/api/show/tournament/list'
+        `${process.env.REACT_APP_BASE_URL}/api/show/tournament/list`
       )
       settList(data)
     } catch (error) {
@@ -25,7 +25,7 @@ function Participants () {
   const showParticipant = async () => {
     try {
       const { data } = await axios.get(
-        'http://localhost:8080/api/show/participant/list'
+        `${process.env.REACT_APP_BASE_URL}/api/show/participant/list`
       )
       setpList(data)
     } catch (error) {
@@ -37,7 +37,7 @@ function Participants () {
     e.preventDefault()
     try {
       const add = await axios.post(
-        'http://localhost:8080/api/create/participant/list',
+        `${process.env.REACT_APP_BASE_URL}/api/create/participant/list`,
         { tournament_name, participant_name }
       )
       if (add.status === 200) {
@@ -53,7 +53,7 @@ function Participants () {
   const deleteParticipant = async id => {
     try {
       const deleteTournament = await axios.delete(
-        `http://localhost:8080/api/delete/participant/${id}`
+        `${process.env.REACT_APP_BASE_URL}/api/delete/participant/${id}`
       )
       showParticipant()
     } catch (error) {
@@ -65,7 +65,7 @@ function Participants () {
     setEditMode(true)
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/participant/${id}`
+        `${process.env.REACT_APP_BASE_URL}/api/participant/${id}`
       )
       setTournament_name(data.tournament_name)
       setParticipant_name(data.participant_name)
@@ -79,7 +79,7 @@ function Participants () {
     e.preventDefault()
     try {
       const edit = await axios.put(
-        `http://localhost:8080/api/update/participant/${userId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/update/participant/${userId}`,
         { tournament_name, participant_name }
       )
       setEditMode(false)
