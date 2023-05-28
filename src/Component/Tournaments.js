@@ -15,7 +15,7 @@ function Tournaments () {
   const showTournament = async () => {
     try {
       const { data } = await axios.get(
-        'http://localhost:8080/api/show/tournament/list'
+        `${process.env.REACT_APP_BASE_URL}/api/show/tournament/list`
       )
       setList(data)
     } catch (error) {
@@ -35,7 +35,7 @@ function Tournaments () {
     }
     try {
       const add = await axios.post(
-        'http://localhost:8080/api/create/tournament/list',
+        `${process.env.REACT_APP_BASE_URL}/api/create/tournament/list`,
         { tournament_name, start_date, end_date, status_of_tournament }
       )
       if (add.status === 200) {
@@ -53,7 +53,7 @@ function Tournaments () {
   const deleteTournament = async id => {
     try {
       const deleteTournament = await axios.delete(
-        `http://localhost:8080/api/delete/tournament/${id}`
+        `${process.env.REACT_APP_BASE_URL}/api/delete/tournament/${id}`
       )
       showTournament()
     } catch (error) {
@@ -65,7 +65,7 @@ function Tournaments () {
     setEditMode(true)
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/tournament/${id}`
+        `${process.env.REACT_APP_BASE_URL}/api/tournament/${id}`
       )
       setTournament_name(data.tournament_name)
       setStart_date(data.start_date)
@@ -82,7 +82,7 @@ function Tournaments () {
     e.preventDefault()
     try {
       const edit = await axios.put(
-        `http://localhost:8080/api/update/tournament/${userId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/update/tournament/${userId}`,
         { tournament_name, start_date, end_date, status_of_tournament }
       )
       setEditMode(false)
